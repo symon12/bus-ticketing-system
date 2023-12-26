@@ -33,6 +33,21 @@
  
 </style>
 
+@if(session('error'))
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-lg-3 text-center">
+            <img src="{{ asset('busTravel/images/bus stop.png') }}" class="img-fluid" alt="">
+            <div class="alert alert-light ">
+                {{ session('error') }}
+            </div>
+        </div>
+    </div>
+@endif
+
+@foreach ($trips as $trip)
+
+
+
 <div class="card container-fluid p-5">
   <div class="w-75 ">
   <ul class="row ">
@@ -59,13 +74,14 @@
               <li class="mt-3 list-item ">12, Ashok leyland, AC</li>
               <li class="mt-3 list-item"><span class="text-uppercase fw-bolder ">Route :</span> Dhaka (Nabinagar) - Dhaka (Savar)</li>
               <li class="mt-3 list-item">Dhaka - Chittagong - Cox's bazar</li>
-              <li class="mt-3 list-item"><span class="text-uppercase fw-bolder">Starting Point :</span> Dhaka</li>
-              <li class="mt-3 list-item"><span class="text-uppercase fw-bolder">Ending Point :</span> Coxs bazar</li>
+              <li class="mt-3 list-item"><span class="text-uppercase fw-bolder">Starting Point :</span> {{$trip->from_location}} </li>
+              <li class="mt-3 list-item"><span class="text-uppercase fw-bolder">Ending Point :</span> {{$trip->to_location}}</li>
             </ul>
           </li>
-          <li class="col-2">06:30 PM</li>
-          <li class="col-2">05:30 AM</li>
-          <li class="col-2 text-success fw-bold">28</li>
+          <li class="col-2">{{$trip->trip_date}}</li>
+          <li class="col-2">{{$trip->trip_date}}</li>
+          
+          <li class="col-2 text-success fw-bold">{{$trip->available_seats}}</li>
         </ul>
   </div>
 <div class="col-2 ">
@@ -105,12 +121,12 @@
          
                 <div class="row ms-5 mt-2">
                   
-                        <div class="form-check col-1 ">
-                            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              A1
-                            </label>
-                          </div>
+                  <div class="form-check col-1 ms-1">
+                    <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      A1
+                    </label>
+                  </div>
                           <div class="form-check col-1 ms-1">
                             <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                             <label class="form-check-label" for="exampleRadios2">
@@ -132,12 +148,12 @@
                     </div>
                 
                   <div class="row ms-5">
-                          <div class="form-check col-1">
-                              <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                              <label class="form-check-label" for="exampleRadios1">
-                                B1
-                              </label>
-                            </div>
+                    <div class="form-check col-1 ms-1">
+                      <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        B1
+                      </label>
+                    </div>
                             <div class="form-check col-1 ms-1">
                               <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                               <label class="form-check-label" for="exampleRadios2">
@@ -160,12 +176,12 @@
                 
                   
                     <div class="row ms-5">
-                            <div class="form-check col-1">
-                                <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                  C1
-                                </label>
-                              </div>
+                      <div class="form-check col-1 ms-1">
+                        <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                          C1
+                        </label>
+                      </div>
                               <div class="form-check col-1 ms-1">
                                 <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                 <label class="form-check-label" for="exampleRadios2">
@@ -188,12 +204,12 @@
                   
                     
                       <div class="row ms-5">
-                              <div class="form-check col-1">
-                                  <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                  <label class="form-check-label" for="exampleRadios1">
-                                    D1
-                                  </label>
-                                </div>
+                        <div class="form-check col-1 ms-1">
+                          <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                          <label class="form-check-label" for="exampleRadios2">
+                            D1
+                          </label>
+                        </div>
                                 <div class="form-check col-1 ms-1">
                                   <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                   <label class="form-check-label" for="exampleRadios2">
@@ -216,12 +232,12 @@
                      
                      
                         <div class="row ms-5">
-                                <div class="form-check col-1">
-                                    <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                      E1
-                                    </label>
-                                  </div>
+                          <div class="form-check col-1 ms-1">
+                            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                              E1
+                            </label>
+                          </div>
                                   <div class="form-check col-1 ms-1">
                                     <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                     <label class="form-check-label" for="exampleRadios2">
@@ -244,12 +260,12 @@
                         
                        
                           <div class="row ms-5">
-                                  <div class="form-check col-1">
-                                      <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                      <label class="form-check-label" for="exampleRadios1">
-                                        F1
-                                      </label>
-                                    </div>
+                            <div class="form-check col-1 ms-1">
+                              <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                              <label class="form-check-label" for="exampleRadios2">
+                                F1
+                              </label>
+                            </div>
                                     <div class="form-check col-1 ms-1">
                                       <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                       <label class="form-check-label" for="exampleRadios2">
@@ -272,12 +288,12 @@
                          
                          
                             <div class="row ms-5">
-                                    <div class="form-check col-1">
-                                        <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                          G1
-                                        </label>
-                                      </div>
+                              <div class="form-check col-1 ms-1">
+                                <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                  G1
+                                </label>
+                              </div>
                                       <div class="form-check col-1 ms-1">
                                         <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                         <label class="form-check-label" for="exampleRadios2">
@@ -300,12 +316,12 @@
                            
                             
                               <div class="row ms-5">
-                                      <div class="form-check col-1">
-                                          <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            H1
-                                          </label>
-                                        </div>
+                                <div class="form-check col-1 ms-1">
+                                  <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                                  <label class="form-check-label" for="exampleRadios2">
+                                    H1
+                                  </label>
+                                </div>
                                         <div class="form-check col-1 ms-1">
                                           <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                           <label class="form-check-label" for="exampleRadios2">
@@ -328,12 +344,12 @@
                             
                               
                                 <div class="row ms-5">
-                                        <div class="form-check col-1">
-                                            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                              I1
-                                            </label>
-                                          </div>
+                                  <div class="form-check col-1 ms-1">
+                                    <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                      I1
+                                    </label>
+                                  </div>
                                           <div class="form-check col-1 ms-1">
                                             <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
                                             <label class="form-check-label" for="exampleRadios2">
@@ -341,8 +357,8 @@
                                             </label>
                                           </div>
                                           <div class="form-check col-1 ms-5">
-                                            <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2">
-                                            <label class="form-check-label" for="exampleRadios2">
+                                            <input class="form-check-input" type="checkbox" name="exampleRadios" id="i3" value="option2">
+                                            <label class="form-check-label" for="i3">
                                               I3
                                             </label>
                                           </div>
@@ -373,7 +389,7 @@
 
                       {{-- end Container --}}
                 </div>  
+                @endforeach
 
                 
 
-{{-- @endsection --}}

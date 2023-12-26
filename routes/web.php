@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get("/dashboard",[HomeController::class,"search_item"])->name("layout.home");
+Route::get("/",[HomeController::class,"search_item"])->name("layout.home");
 Route::get("/create_trip",[TripCreateController::class,"create_trip"])->name("create_trip");
-Route::post("/create_trip/form",[TripCreateController::class,"store_trip"])->name("store_trip");
+Route::post("/create_trip",[TripCreateController::class,"store_trip"])->name("store_trip");
 
 
 
